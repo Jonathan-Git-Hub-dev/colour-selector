@@ -4,14 +4,13 @@ import {useState, useRef} from 'react';
 
 function App() {
   const down = useRef(false);
-  //const [val, setVal] = useState(50);
-  let options = 200;
+  const [val, setVal] = useState(50);
   //const [hue, setHue] = useState([0,0,0]);
-  function cl(val)
+  function cl(e)
   {
-        //setVal(e.target.value)
+        setVal(e.target.value)
 
-        let maxV= 201;
+        let maxV= 1000;
           let minV = 1;
 
           //let cols = ['red', 'yellow', 'limegreen', 'dodgerblue', 'purple', 'red'];
@@ -22,11 +21,11 @@ function App() {
           //console.log(lens);
           //coso
           let gaps = Math.ceil(maxV/lens);
-          let index = Math.floor((val-1)/gaps);
+          let index = Math.floor((e.target.value-1)/gaps);
           
           //console.log(index);
 
-          let mix = val/gaps - index;
+          let mix = e.target.value/gaps - index;
 
           //console.log(cols[index] + " %= " + (1-mix))
           //console.log(cols[index+1] + " %= " +mix)
@@ -38,60 +37,21 @@ function App() {
           //console.log("(" + a + "," + b + "," + c + ")");
 
           //setHue([a,b,c]);
-          let ttt = document.getElementById("out");
-          const rgbColor = `rgb(${a}, ${b}, ${c})`;
-          ttt.style.backgroundColor = rgbColor;
-          //let n = document.getElementById("myRange");
+          //let ttt = document.getElementById("out");
+          //const rgbColor = `rgb(${a}, ${b}, ${c})`;
+          //ttt.style.backgroundColor = rgbColor;
+          let n = document.getElementById("myRange");
           //console.log(n);
-          //console.log(n.style);
+          console.log(n.style);
           //n.style.MozRa = '5px 5px 10px rgba(0, 0, 0, 0.3)';
         }
-
-  function moveKnob(e)
-  {
-  let s = document.getElementById('s');
-              let k = document.getElementById('k');
-              let h = document.getElementById('h');
-
-              let hoff = h.offsetLeft;
-              let ex = (h.clientWidth - (s.clientWidth - k.clientWidth))/2;
-              let move = (e.clientX - hoff);
-              if(move >= 0 && move <= ex)
-              {
-                move = 0;
-              }
-              else if(move >= (s.clientWidth - k.clientWidth) + ex)
-              {
-                move = (s.clientWidth - k.clientWidth);
-              }
-              else
-              {
-                move -=ex;
-              }
-              
-              k.style.left = move+ "px"
-            }
-
-    function getSlideVal()
-    {
-      let s = document.getElementById('s');
-      let k = document.getElementById('k');
-      let space = s.clientWidth - k.clientWidth;
-      //console.log("space: " + space);
-
-      let step = space/options;
-
-      //let progress = k.offsetLeft - s.offsetLeft;
-      //console.log(k.offsetLeft);
-      return Math.floor(k.offsetLeft/step) + 1;
-
-    }
 
   return (
     <div className="App">
       <div className="out" id="out"></div>
       
-            
+      <input type="range" min="1" max="1000" value={val} onChange={cl} className="slider" id="myRange"></input>
+      
       
       <div onMouseMove={(e)=>{
             //console.log("helo");
@@ -99,14 +59,57 @@ function App() {
             //always 
             if(down.current == true)
             {
-              moveKnob(e);
-              let val = getSlideVal();
-              //console.log(val);
-              //do on change here
-              //////////////////////////////////
-              cl(val);
-              ///////////////////////////////////
+              //console.log("doing");
+              let s = document.getElementById('s');
+
+              //console.log(s.offsetLeft);
+              //console.log(s.clientWidth)
+              //console.log(e.clientX)
+              
+              /*if(move > s.clientWidth)
+              {
+                move = s.clientWidth;
+              }
+              if(move )*/
+              let k = document.getElementById('k');
+              let h = document.getElementById('h');
+
+              //let soff = s.offsetLeft;
+              let hoff = h.offsetLeft;
+              //let soffh = s.offsetHeight;
+              //let hoffh = h.offsetHeight;
+              //console.log("X: " + (e.clientX - hoff ));
+              //k.style.top = "3px";
+              let ex = (h.clientWidth - s.clientWidth)/2;
+              //console.log(ex);
+              let move = (e.clientX - hoff);
+              if(move >= 0 && move <= ex)
+              {
+                move = 0;
+              }
+              else if(move >= s.clientWidth + ex)
+              {
+                move = s.clientWidth;
+              }
+              else
+              {
+                move -=ex;
+              }
+              /*if(move < ex)
+              {
+                move=0;
+              }
+              elseif(move > s.clientWidth+ ex)
+              {
+                move=s.clientWidth;
+              }*/
+              console.log(move);
+              k.style.left = move + "px";
             }
+            /*else
+            {
+              console.log("not");
+            }*/
           }}
           onMouseUp={()=>{
             //console.log("upp")
@@ -187,6 +190,3 @@ export default App;
         e.preventDefault();
         console.log("up");
       }}>here</div>*/
-
-/*<input type="range" min="1" max="1000" value={val} onChange={cl} className="slider" id="myRange"></input>
-*/

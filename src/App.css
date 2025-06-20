@@ -2,26 +2,17 @@
   text-align: center;
 
 }
-.appG{
-  /*background-color: linear-gradient(blue, red);*/
-  background-image: linear-gradient(90deg, red, yellow, limegreen, dodgerblue, purple, red);
 
-  min-width: 400px;
-  max-width: 400px;
-  min-height: 20px;
-  max-height: 20px;
-}
 .slidecontainer {
   width: 100%;
 }
 
 .slider {
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
   width: 100%;
   height: 25px;
-  /*background: #d3d3d3;*/
-  background-image: linear-gradient(90deg, red, yellow, limegreen, dodgerblue, purple, red);
-  outline: none;
+  background-image: linear-gradient(90deg, red, yellow, rgb(0,255,0), rgb(0,0,255), rgb(255,0,255), red);
+  /*outline: none;*/
 }
 
 
@@ -33,15 +24,58 @@
   background: #04AA6D;
   cursor: pointer;
 }*/
+.h{
+min-width: 600px;
+  max-width: 600px;
+  min-height: 50px;
+  max-height: 50px;
+
+  background-color: bisque;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.s{
+  position: relative;
+
+  min-width: 500px;
+  max-width: 500px;
+  min-height: 10px;
+  max-height: 10px;
+
+  /*background-color: blue;*/
+  background-image: linear-gradient(90deg, red, yellow, rgb(0,255,0), rgb(0,0,255), rgb(255,0,255), red);
+ 
+
+  border-radius: 5px;
+}
+.k{
+  position: absolute;
+
+  min-width: 16px;
+  max-width: 16px;
+  min-height: 16px;
+  max-height: 16px;
+
+  background-color: white;
+  border: solid 1px black;
+
+  box-sizing: border-box;
+
+  top: -3px;
+}
+
 
 .slider::-moz-range-thumb {
-  width: 10px;
+  width: 8px;
   height: 30px;
   /*background: white;*/
-  background: rgba(0, 0, 0, 0);
+  /*background: rgba(0, 0, 0, 0);*/
   /*opacity: 0.1;*/
+  background-color: aqua;
   cursor: pointer;
-  border: solid 2px black;
+  border: solid 1px black;
 }
 
 .res{
@@ -49,4 +83,46 @@
   max-width: 200px;
   min-height: 200px;
   max-height: 200px;
+}
+.temp{
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+}
+/*.hold{
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 200px;
+  max-height: 200px;
+
+  display: flex;
+} 
+#i1{
+    background-color: rgb(255,0,0);
+}
+#i2{
+    background-color: rgb(0,255,0);
+}
+#i3{
+    background-color: rgb(0,0,255);
+}
+#i4{
+    background-color: rgb(255,255,0);
+}
+#i5{
+    background-color: rgb(0,255,255);
+}
+#i6{
+    background-color: rgb(255,0,255);
+}
+#i7{
+    background-color: rgb(255,255,255);
+}*/
+
+.out{
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
 }
