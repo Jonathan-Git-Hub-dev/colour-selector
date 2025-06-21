@@ -4,15 +4,44 @@ import {useState, useRef} from 'react';
 
 function App() {
   const down = useRef(false);
+  const [black, setBlack] = useState(0);
+  const [white, setWhite] = useState(0);
+  const colour = useRef([2550,0,0]);
   //const [val, setVal] = useState(50);
   let options = 200;
   //const [hue, setHue] = useState([0,0,0]);
+  //function()
+  function displayColour(Colour, Black, White)
+  {
+    //black then white
+    let r = Colour[0]// * Black; 
+    r+= (White * 255);
+    let g = Colour[1]// * Black;
+    g+= (White * 255);
+    let b = Colour[2]// * Black;
+    b+= (White * 255);
+
+
+    //console.log(Black)
+    //console.log(r + ' ' + g + ' ' + b);
+
+
+
+    let ttt = document.getElementById("out");
+    const rgbColour = `rgb(${r}, ${g}, ${b})`;
+    ttt.style.backgroundColor = rgbColour;  
+  }
+
+  function colourKnob(Colour)
+  {
+    const rgbColour = `rgb(${Colour[0]}, ${Colour[1]}, ${Colour[2]})`;
+
+          document.getElementById("k").style.backgroundColor = rgbColour;
+  }
+
   function cl(val)
   {
-        //setVal(e.target.value)
-
-        let maxV= 201;
-          let minV = 1;
+    let maxV= 201;
 
           //let cols = ['red', 'yellow', 'limegreen', 'dodgerblue', 'purple', 'red'];
           let cmb = [[255,0,0],[255,255,0],[0, 255, 0], [0, 0, 255], [255,0,255],[255,0,0]]
@@ -36,15 +65,23 @@ function App() {
           let c = cmb[index][2] * (1-mix) + cmb[index+1][2] * mix;
 
           //console.log("(" + a + "," + b + "," + c + ")");
-
+          colour.current=[a,b,c];
+          return [a,b,c];
           //setHue([a,b,c]);
-          let ttt = document.getElementById("out");
-          const rgbColor = `rgb(${a}, ${b}, ${c})`;
-          ttt.style.backgroundColor = rgbColor;
+          /*let ttt = document.getElementById("out");
+          const rgbColour = `rgb(${a}, ${b}, ${c})`;
+          ttt.style.backgroundColor = rgbColour;
+
+          document.getElementById("k").style.backgroundColor = rgbColour;
           //let n = document.getElementById("myRange");
           //console.log(n);
           //console.log(n.style);
           //n.style.MozRa = '5px 5px 10px rgba(0, 0, 0, 0.3)';
+
+          //setting black slider
+          const neI = `linear-gradient(90deg,${rgbColour},black)`;
+          document.getElementById("myRange").style.backgroundImage = neI;*/
+
         }
 
   function moveKnob(e)
@@ -91,6 +128,42 @@ function App() {
     <div className="App">
       <div className="out" id="out"></div>
       
+      <input type="range" min="0" max="100" value={black} className="slider" id="myRange" onChange={(e)=>{
+          setBlack(e.target.value);
+          displayColour(colour.current, (100-e.target.value)/100, white/100);
+          /*let colP = 100-e.target.value;
+          //let blackP = e.target.value;
+
+          let a = colour.current[0] * (colP/100); 
+          let b = colour.current[1] * (colP/100);
+          let c = colour.current[2] * (colP/100);
+
+          let ttt = document.getElementById("out");
+          const rgbColour = `rgb(${a}, ${b}, ${c})`;
+          ttt.style.backgroundColor = rgbColour;*/
+
+
+
+      }}/>
+      <input type="range" min="0" max="100" value={white} className="sliderb" id="myRange2" onChange={(e)=>{
+          setWhite(e.target.value);
+          displayColour(colour.current, (100-black)/100, e.target.value/100);
+          /*let whiteP = e.target.value/100;
+          //let blackP = e.target.value;
+
+          let a = colour.current[0] + (255*whiteP); 
+          let b = colour.current[1] + (255*whiteP);
+          let c = colour.current[2] + (255*whiteP);
+
+          let ttt = document.getElementById("out");
+          const rgbColour = `rgb(${a}, ${b}, ${c})`;
+          ttt.style.backgroundColor = rgbColour;*/
+
+
+
+      }}/>
+
+      
             
       
       <div onMouseMove={(e)=>{
@@ -101,11 +174,10 @@ function App() {
             {
               moveKnob(e);
               let val = getSlideVal();
-              //console.log(val);
-              //do on change here
-              //////////////////////////////////
-              cl(val);
-              ///////////////////////////////////
+              let temp  = cl(val);
+              displayColour(temp, (100-black)/100, white/100);
+              colourKnob(temp);
+              //get black and white
             }
           }}
           onMouseUp={()=>{
