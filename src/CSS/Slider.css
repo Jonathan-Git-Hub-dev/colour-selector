@@ -1,0 +1,44 @@
+.sliderFrame{
+    min-width: 90%;
+    max-width: 90%;
+    min-height: 50px;
+    max-height: 50px;
+
+    background-color: lightgray;
+
+    border-radius: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sliderRail{
+  position: relative;
+
+  min-width: 90%;
+  max-width: 90%;
+  min-height: 10px;
+  max-height: 10px;
+
+  /*background-color: blue;*/
+  background-image: linear-gradient(90deg, red, yellow, rgb(0,255,0), aqua, rgb(0,0,255), rgb(255,0,255), red);
+ 
+
+  border-radius: 5px;
+}
+.sliderKnob{
+  position: absolute;
+
+  min-width: 8px;
+  max-width: 8px;
+  min-height: 16px;
+  max-height: 16px;
+
+  background-color: red;
+  border: solid 1px black;
+  border-radius: 4px;
+
+  box-sizing: border-box;
+
+  top: -3px;
+}
