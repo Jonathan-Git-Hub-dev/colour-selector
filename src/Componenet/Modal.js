@@ -4,7 +4,6 @@ export default function Modal(props)
 {
     function modalOn()
     {
-        props.func();
         props.passedRef.current.style.display = "flex";
     }
 
